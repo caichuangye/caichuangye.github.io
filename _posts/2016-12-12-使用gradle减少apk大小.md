@@ -1,6 +1,9 @@
 ---
 title: 使用gradle减少apk大小
 date: 2016-12-12 22:46:49
+tags:
+- Gradle
+- Android
 ---
 ### 一. proguard
 

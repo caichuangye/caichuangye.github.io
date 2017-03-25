@@ -1,6 +1,9 @@
 ---
 title: ViewManager接口分析
 date: 2017-02-04 22:46:49
+tags:
+- View
+- Android
 ---
 
 #### `一. ViewManger接口定义`
