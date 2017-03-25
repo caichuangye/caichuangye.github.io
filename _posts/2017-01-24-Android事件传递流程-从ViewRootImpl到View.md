@@ -8,7 +8,7 @@ categories: Android
 ---
 
 #### Step1. 从ViewRootImpl到DecorView
-![从驱动到DecorView](\assets\img\blogs\viewrootimpl\事件传递流程1.png)
+![从驱动到DecorView](\assets\img\blogs\viewroot\v1.png)
                             
 ##### 1.1 ViewRootImpl.dispatchInputEvent
 ```java
@@ -229,7 +229,7 @@ DecorView是PhoneWindow的内部类，PhoneWindow的是Window的子类。Activit
 
 #### Step2. 从DecorView到每一个View
 在Step1中，我们看到了一个Touch事件是如何由ViewRootImpl传递到Activity中的，现在来分析事件是如何从Activity传递到Activity中的每个View中的。
-![从DecorView到每一个View](\assets\img\blogs\viewrootimpl\事件传递流程2.png)
+![从DecorView到每一个View](\assets\img\blogs\viewroot\v2.png)
 
 #####2.1 Activity.dispatchTouchEvent
 ```java
@@ -264,7 +264,7 @@ DecorView继承自FrameLayout，是Activity中所有界面元素的根布局，�
 
 **`总结：`**
 事件传递的整体流程如下图：
-![事件传递整体流程](\assets\img\blogs\viewrootimpl\事件传递整体流程.png)
+![事件传递整体流程](\assets\img\blogs\viewroot\v3.png)
 
 
 1. ViewRootImpl首先接收到事件，然后交给DecorView处理
