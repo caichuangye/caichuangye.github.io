@@ -1,11 +1,11 @@
 # Site settings
-title: Blade Theme
-description: A simple Jekyll blog theme developed by Mateus Medeiros 
-url: "http://mateussmedeiros.github.io/blade-theme/" # the base hostname & protocol for your site, e.g. http://example.com
+title: Caichuangye's blogs site
+description: 我的知识、经验和见解 
+url: "http://caichuangye.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author settings
 author:
-  name     : Mateus Medeiros
+  name     : caichuangye
   bio      : Front End Developer passionate about new technologies. I am passionate about what I do and I try to learn more every day.
   email    : mateus.sousamedeiros@gmail.com
   twitter  : https://twitter.com/mateussousam
