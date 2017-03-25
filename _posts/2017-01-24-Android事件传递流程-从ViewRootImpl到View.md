@@ -8,7 +8,7 @@ categories: Android
 ---
 
 #### Step1. 从ViewRootImpl到DecorView
-![从驱动到DecorView](assets\img\author.jpg)
+![从驱动到DecorView](/assets/img/author.jpg)
                             
 ##### 1.1 ViewRootImpl.dispatchInputEvent
 ```java
