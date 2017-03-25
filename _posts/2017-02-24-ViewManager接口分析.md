@@ -4,6 +4,7 @@ date: 2017-02-04 22:46:49
 tags:
 - View
 - Android
+categories: Android
 ---
 
 #### `一. ViewManger接口定义`

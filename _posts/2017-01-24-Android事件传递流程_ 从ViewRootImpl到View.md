@@ -4,6 +4,7 @@ date: 2017-01-24 22:46:49
 tags:
 - View
 - Android
+categories: Android
 ---
 
 #### Step1. 从ViewRootImpl到DecorView

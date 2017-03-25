@@ -4,6 +4,7 @@ date: 2016-12-12 22:46:49
 tags:
 - Gradle
 - Android
+categories: Android
 ---
 ### 一. proguard
 
