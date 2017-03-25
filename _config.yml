@@ -33,7 +33,7 @@ defaults:
 paginate: 20
 #### Site
 title : Caichuangye
-tagline: My blogs site
+tagline: 爱好由来落笔难，一诗千改心始安
 assets: /assets
 baseurl: 
 
@@ -87,7 +87,7 @@ share_button: true #enable share buttons if true
 
 #### Author information
 author:
-  name: Caichuangye      ## e.g. wuchong Author name
+  name: Android - Java - Linux - Python      ## e.g. wuchong Author name
   intro_line1:  "Hello ,I'm a Android deleloper in Nanjing."    ## your introduction on the bottom of the page
   intro_line2:  "This is my blog, is it cool?"  ## the 2nd line
   weibo:      ## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895
