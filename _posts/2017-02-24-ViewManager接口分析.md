@@ -23,7 +23,7 @@ public interface ViewManager{
 }
 ```
 ViewManger中定义的接口是在WindowManageImpl中实现的，但仅仅是个壳，WindowManagerImpl有类型为WindowManagerGlobal的变量mGlobal，以上3个接口真正是在mGlobal中实现的，具体的关系为：
-![@ViewManager接口实现|center](\assets\img\blogs\viewmanager\viewmanager.PNG)
+![ViewManager接口实现](\assets\img\blogs\viewmanager\viewmanager.PNG)
 接下来分析WindowManagerGlobal中addView、updateViewLayout和removeView的实现过程。
 
 #### `二. addView代码分析`
@@ -123,7 +123,7 @@ scheduleTraversals代码如下：
  }
 ```
 至此，进入了每个View的measure、layout和draw流程！！！
-![@performTraversals|center](\assets\img\blogs\viewmanager\performTraversals.png)
+![performTraversals](\assets\img\blogs\viewmanager\performTraversals.png)
 
 
 #### `三. updateViewLayout代码分析`
