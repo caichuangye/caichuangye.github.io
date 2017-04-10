@@ -32,7 +32,7 @@ defaults:
 #### Pagination
 paginate: 20
 #### Site
-title : Android - Java - Linux - Python
+title : Android - Java
 tagline: 爱好由来落笔难，一诗千改心始安
 assets: /assets
 baseurl: 
