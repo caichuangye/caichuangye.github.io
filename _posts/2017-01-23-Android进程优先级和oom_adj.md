@@ -18,7 +18,7 @@ ps -eo state,uid,pid,ppid,rtprio,time,comm
 ```
 查看系统中的进程列表，以及它们对应的实时优先级（位于RTPRIO列下），其中如果有进程对应列显示“-”，则说明它不是实时进程。
 
-![Linux进程优先级]((/assets/img/blogs/processandoomadj/进程优先级.PNG)
+![Linux进程优先级](/assets/img/blogs/processandoomadj/进程优先级.PNG)
 
 **`总结：`**
 **`实时进程：优先级范围 0 - 99，数值越大优先级越高`**
