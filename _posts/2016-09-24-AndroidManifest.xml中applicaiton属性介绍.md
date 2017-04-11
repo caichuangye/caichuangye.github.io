@@ -9,12 +9,12 @@ categories: Android
 
 application支持的属性如下：
 
-#### `*1. android:allowTaskReparenting=["true" | "false"]`
+#### `1. android:allowTaskReparenting=["true" | "false"]`
 >当该Task下一次被带到前面时，应用程序定义的Activity是否可以从启动它们的Task移动到有相同affinity 的Task - 如果它们可以移动，则为true，false表示它们仍要停留在启动它们的task中。 默认值为“false”。Activity可以设置自己的allowTaskReparenting属性来覆盖Application节点下的这个属性。
 
 ---
 
-#### `*2.  android:allowBackup=["true" | "false"]`
+#### `2.  android:allowBackup=["true" | "false"]`
 >是否允许应用程序参与备份和恢复基础架构。 如果此属性设置为false，则不会执行应用程序的备份或恢复，即使是全系统备份，否则将导致所有应用程序数据通过adb保存。 此属性的默认值为true。
 
 `注意：慎用该属性！！！`当该属性为true时，可通过adb backup命令将应用中的数据备份到pc上：
@@ -34,7 +34,7 @@ adb restore d:\com.test.bak.ab
 此时，第一部手机上被备份的应用会在第二部手机上被恢复，从而可能出现泄漏隐私。如果处于业务需求需要将该属性设置为true，则要增加额外的身份验证以及其他安全验证手段。
 
 ---
-#### `*3. android:backupAgent="string"`
+#### `3. android:backupAgent="string"`
 >实现应用backup代理的类名，它是BackupAgent的一个子类。这个属性应当是一个类的全路径名（比如com.example.project.MyBackupAgent）。如果类名的第一个字母是“.”（ 比如".MyBackupAgent"）,它会附加到 < manifest> 元素中指定的包名之后。没有默认值。必须指定该名称。
 
 ---
@@ -62,7 +62,7 @@ adb restore d:\com.test.bak.ab
 >Android系统能否实例化应用的组件-true表示可以，false表示不可以。如果设置为true，每个组件的enabled 属性决定了这个组件是否可用。如果设置为false，它会覆盖组件指定的值，即所有的组件都被禁用。默认值为true。
 
 ---
-#### `*9.  android:extractNativeLibs=["true" | "false"]`
+#### `9.  android:extractNativeLibs=["true" | "false"]`
 >包安装器能否从apk中抽取本地库到文件系统。如果设置为false，你的本地库必须页对其并且在apk中以未压缩的方式存储。链接器在运行时从apk中直接加载库不会导致代码改动。默认值为true。
 
 ---
@@ -97,7 +97,7 @@ adb restore d:\com.test.bak.ab
 >当应用在全系统层面的恢复操作时，应用的设置被恢复后，应用应当终止运行。单个包的恢复操作不会导致应用关闭。全系统的恢复操作一般来说只会发生一次，即在手机第一次启动时。第三方的应用一般没必要使用这个属性。默认值为true，意味着当应用在全系统的恢复操作中处理完自己的数据后，将会停止运行。
 
 ---
-#### `*17. android:largeHeap=["true" | "false"]`
+#### `17. android:largeHeap=["true" | "false"]`
 >你的应用进程是否通过一个large  Dalvik heap 被创建。这个属性适用于所有的为应用创建的进程。它仅适用于被加载到进程的第一个应用；如果你使用shared user id来允许多个应用在同一个进程中，它们都必需一致的使用这个选项，否则可能出现不可预知的结果。
 >大部分app都不应使用这个属性，而应该把焦点放在如何减少整体的内存使用来提示性能。启用此功能也不能保证可用内存的固定增加，因为一些设备被全部可用内存限制了。
 >可使用ActivityManager.getMemoryClass() or ActivityManager.getLargeMemoryClass()在运行时获取可用的内存大小。
@@ -126,7 +126,7 @@ adb restore d:\com.test.bak.ab
 >为了跟应用交互，客户端必须拥有的权限。这个属性是适用于应用中所有组件设置权限的一个方便的方法。每个组件可设置各自的permission属性来覆盖application中的这个属性。
 
 ---
-#### `*23.  android:persistent=["true" | "false"]`
+#### `23.  android:persistent=["true" | "false"]`
 >应用是否应始终保持运行状态-true表示是，false表示否。默认值是false。应用通常不应设置此标志；persistence 模式仅适用于某些系统应用。
 
 ---
@@ -175,7 +175,7 @@ adb restore d:\com.test.bak.ab
 >默认值是false，在API level 17中引入的这个属性。
 
 ---
-#### `*30. android:taskAffinity="string"`
+#### `30. android:taskAffinity="string"`
 >一个应用中所有的Activity的affinity名称，除了那些设置了不同affinity属性的Activity。默认情况下，一个应用中所有的Activity的affinity都相同，为manifest中通过 < manifest>元素设置的包名。
 
 ---
@@ -183,7 +183,7 @@ adb restore d:\com.test.bak.ab
 >表示一个应用是否仅仅用于测试。例如，它可能暴露它自己的功能或外部数据，这些可能导致一个安全漏洞，但对调试来说有用。这类应用仅仅可以通过adb命令安装。
 
 ---
-#### `*32. android:theme="resource or theme"`
+#### `32. android:theme="resource or theme"`
 >为应用中所有的Activity定义默认主题的样式资源的引用。每个Activity都可以通过设置它们自己的这个属性。      
 
 ---
