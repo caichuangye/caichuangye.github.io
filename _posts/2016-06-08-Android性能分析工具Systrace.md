@@ -251,10 +251,10 @@ ListView会回收已经加载过的View，确保在getView时复用已存在的v
 这种场景比较少见，而且GC导致的pause时间也较短，一般在10ms以内，很少会因为gc导致掉帧，如下面的两个截图所示：
 
 * 如下图所示，full suspand check
-![Alt text|center](/assets/img/blogs/systrace/gc1.JPG)
+![](/assets/img/blogs/systrace/gc1.JPG)
 
 * Checkpoint function
-![Alt text|center](/assets/img/blogs/systrace/gc2.JPG)
+![](/assets/img/blogs/systrace/gc2.JPG)
 
 
 
