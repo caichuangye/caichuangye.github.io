@@ -125,7 +125,8 @@ private View fillFromTop(int nextTop) {
         return selectedView;
     }
 ```
-fillDown的作用是从上往下，将View铺满当前ListView的可见区域，并且返回被选中的View。fillDown中最核心的函数就是makeAndAddView，从函数名可以，该函数产生一个view，并且添加到了listview。
+fillDown的作用是从上往下，将View铺满当前ListView的可见区域，并且返回被选中的View。fillDown中最核心的函数就是makeAndAddView，
+从函数名知道该函数产生一个view，并且添加到了listview。
 
 #### 5. makeAndAddView
 ```java
@@ -156,13 +157,16 @@ private View makeAndAddView(int position, int y, boolean flow, int childrenLeft,
 ```
 
 在分析makeAndAddView之前，先简要介绍下ABSListView中的一个非常重要的内部类**`RecycleBin`**：
->RecycleBin用于复用ABSListView中的View，RecycleBin存储了两个不同层次的View：活动的View和废弃的View。活动的View是指那些当前正在显示在屏幕上的View，废弃的view是指已经不再显示的View，它们可以被重用，以避免不必要的inflate。
+>RecycleBin用于复用ABSListView中的View，RecycleBin存储了两个不同层次的View：活动的View和废弃的View。活动的View是指那些当前正在显示在屏幕上的View，
+废弃的view是指已经不再显示的View，它们可以被重用，以避免不必要的inflate。
 
 
 
 在makeAndAddView中，有两个分支：
-1. 若数据没有变化并且RecycleBin中可直接使用的View，则直接使用该View，然后调用setupChild将View放到指定位置。`需要注意到：此时调用setupChild的最后一个参数为true，表明这个View时被循环利用的，在显示时不要再次measure和layout。`
-2. 否则，先调用obtainView获取一个View，再调用setupChild。`需要注意到：此时调用setupChild的最后一个参数为取决于obtainView执行的结果：如果Adapter的getView使用了传入的convertView，则此时为true，否则为false。`
+1. 若数据没有变化并且RecycleBin中可直接使用的View，则直接使用该View，然后调用setupChild将View放到指定位置。
+`需要注意到：此时调用setupChild的最后一个参数为true，表明这个View时被循环利用的，在显示时不要再次measure和layout。`
+2. 否则，先调用obtainView获取一个View，再调用setupChild。`需要注意到：此时调用setupChild的最后一个参数为取决于obtainView执行的结果：
+如果Adapter的getView使用了传入的convertView，则此时为true，否则为false。`
 
 setupChild中title为“obtainView” Trace标记，setupChild中有title为setupListItem的Trace标记，这两张情况的systrace分析分别如下所示：
 
@@ -171,7 +175,8 @@ setupChild中title为“obtainView” Trace标记，setupChild中有title为setu
 
 2. 先调用obtainView，再调用setupListView
 ![先调用obtainView，再调用setupListView](/assets/img/blogs/listview/layout.JPG)
-一般来说，这种情况出现在ListView第一次加载数据或数据源发生变化时，此时一般都会导致较为严重的掉帧问题：obtainView中会调用Adapter的getView方法，若getView中调用了inflate方法，就可能会出现掉帧问题。
+一般来说，这种情况出现在ListView第一次加载数据或数据源发生变化时，此时一般都会导致较为严重的掉帧问题：obtainView中会调用Adapter的getView方法，
+若getView中调用了inflate方法，就可能会出现掉帧问题。
 
 接下来分析上面涉及到的两个非常重要的函数：obtainView和setupChild。
 
@@ -213,7 +218,8 @@ obtainView的核心代码如上所示，obatinView中添加了类型为View，ti
 需要注意到obtainView的第二个参数isScrap：这个参数用于表示从obtainView中获取的view是否是一个被复用的View：
 * 首先，不管isScap的初始值为什么，isScrap[0] 都会被置为false
 * 根据要显示的位置从RecycleBin的废弃View集合中取出一个View，作为BaseAdapter的getView的参数传入
-* 判断getView返回的View是否就是getView中传入的convertView，如果是，isScap[0]被置为true，此时获取到的View就是一个被复用的View，显示时需要被measure和layout；否则需要measure和layout。
+* 判断getView返回的View是否就是getView中传入的convertView，如果是，isScap[0]被置为true，此时获取到的View就是一个被复用的View，
+显示时需要被measure和layout；否则需要measure和layout。
 
 
 
@@ -235,7 +241,8 @@ View getScrapView(int position) {
             return null;
         }
 ```
-`一般来说，ListView中View的样式只用一种，即ListView的每一行的View的布局样式都相同，假设：如要要求ListView的单数行与偶数行的View样式不同，我们又该如何自定义BaseAdapter？`
+`一般来说，ListView中View的样式只用一种，即ListView的每一行的View的布局样式都相同，假设：如要要求ListView的单数行与偶数行的View样式不同，
+我们又该如何自定义BaseAdapter？`
 BaseAdapter中有如下两个方法：
 ```java
     public int getItemViewType(int position) {
@@ -249,7 +256,8 @@ BaseAdapter中有如下两个方法：
 * getViewTypeCount用于表示当前ListView中有多少不同样式的View，返回值默认是1，即默认情况下，ListView的每一行的View的样式都相同
 * getItemViewType用于获取制定位置上View的样式的类型，默认返回值为0
 
-通过以上分析可知，当我们要定义一个有多个Item样式的ListView，需要实现getViewTypeCount和getItemViewType方法。如果不实现，会导致从RecycleBin获取的复用View与目标View的样式不匹配。
+通过以上分析可知，当我们要定义一个有多个Item样式的ListView，需要实现getViewTypeCount和getItemViewType方法。如果不实现，
+会导致从RecycleBin获取的复用View与目标View的样式不匹配。
 
 
 #### 7. setupChild
@@ -344,7 +352,8 @@ BaseAdapter中有如下两个方法：
         Trace.traceEnd(Trace.TRACE_TAG_VIEW);
     }
 ```
-从obtainView的过程可知，当obtainView返回的是一个被复用的View时，setupChild的最后一个参数recycled为true，表示当前的View是一个被复用的View，否则就是为false。一个View是否需要被测量由以下表达式决定：
+从obtainView的过程可知，当obtainView返回的是一个被复用的View时，setupChild的最后一个参数recycled为true，表示当前的View是一个被复用的View，
+否则就是为false。一个View是否需要被测量由以下表达式决定：
 
 ```java
 final boolean needToMeasure = !recycled || updateChildSelected || child.isLayoutRequested();
@@ -361,5 +370,3 @@ setupChild中主要做了以下：
 **`1. 通过inflate方法从布局文件中加载View`**
 **`2. 在setupChild时需要对View进行measure`**
 **`3.  在setupChild时需要对View进行layout`**
-
-to-do：本文中多次提到了
