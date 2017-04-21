@@ -17,6 +17,8 @@ Override
         super.onLayout(changed, l, t, r, b);
 
         mInLayout = true;
+        //BaseAdapter的notifyDataSetChanged方法会将mDataChanged设置为true
+        boolean dataChanged = mDataChanged;
 
         final int childCount = getChildCount();
         if (changed) {
@@ -37,6 +39,18 @@ Override
         }
     }
 ```
+
+getChildAt(i).forceLayout()代码如下：
+```
+ public void forceLayout() {
+        if (mMeasureCache != null) mMeasureCache.clear();
+
+        mPrivateFlags |= PFLAG_FORCE_LAYOUT;
+        mPrivateFlags |= PFLAG_INVALIDATED;
+    }
+```
+在forceLayout中只做了两件事：清除已缓存的测量数据，设置强制测量标志。这些在下文会用到。
+
 
 #### 2. layoutChildren
 ```java
@@ -156,7 +170,7 @@ private View makeAndAddView(int position, int y, boolean flow, int childrenLeft,
     }
 ```
 
-在分析makeAndAddView之前，先简要介绍下ABSListView中的一个非常重要的内部类**`RecycleBin`**：
+在分析makeAndAddView之前，先简要介绍下AbsListView中的一个非常重要的内部类**`RecycleBin`**：
 >RecycleBin用于复用ABSListView中的View，RecycleBin存储了两个不同层次的View：活动的View和废弃的View。活动的View是指那些当前正在显示在屏幕上的View，
 废弃的view是指已经不再显示的View，它们可以被重用，以避免不必要的inflate。
 
